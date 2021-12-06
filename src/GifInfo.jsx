@@ -1,10 +1,15 @@
 import React from 'react';
 
 const GifInfo = ({ gif })  => {
+  let url = ''
+  gif.data.forEach((element) => {
+    url = element.images.original.url
+  })
+  
   return (
-<>
-      <img src={gif.data.images.original.url} alt="gif"/>
-</>
+    <>
+    <img src={url}/>
+    </>
   )
 }
 

@@ -19,7 +19,6 @@ function Form (props) {
   return (
     <>
     <form onSubmit={handleSubmit}>
-    <h1>Giphy</h1>
     <input 
       id="GifTerm"
       type="text"
