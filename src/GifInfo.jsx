@@ -8,7 +8,7 @@ const GifInfo = ({ gif })  => {
   
   return (
     <>
-    <img src={url}/>
+    <img src={url} alt=""/>
     </>
   )
 }
