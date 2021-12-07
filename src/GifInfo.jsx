@@ -1,14 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-const GifInfo = ({ gif })  => {
-  let url = ''
-  gif.data.forEach((element) => {
-    url = element.images.original.url
-  })
-  
+const GifInfo = ({ gif }) => {
+
   return (
     <>
-    <img src={url} alt=""/>
+    <img src={gif[0].images.original.url} alt=""/>
     </>
   )
 }

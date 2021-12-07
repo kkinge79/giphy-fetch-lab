@@ -17,28 +17,31 @@ const reloadPage = ()=>{
 }
 
 useEffect(() => {
-  let gifUrl = `http://api.giphy.com/v1/gifs/search?api_key=y9AM67Hu4A7UfTY2vGBaB5BNcBSB5gVG&q=${gifTerm}&limit=1`;
-
-  const makeApiCall = () => {
-    fetch(gifUrl)
-    .then(res => res.json())
-    .then(data => {
-      setGifData(data)
-    })
+  let gifUrl = `https://api.giphy.com/v1/gifs/search?api_key=LFYMIdgkEwDs3KuyUKvtYuLr4CleMVPQ&q=${gifTerm}&limit=1`
+  async function makeApiCall() {
+    try {
+      const res = await fetch(gifUrl)
+      const data = await res.json()
+      setGifData((data.data))
+    } catch(error) {
+      console.log(error)
+    }
   }
   makeApiCall()
 }, [gifTerm])
 
-  return (
-      <div className="App">
-        <h1>Giphy</h1>
-        <Form 
-          handleSubmit ={handleSubmit}
-          />
-      {gifData.data ? <GifInfo gif={gifData} /> : null}
-      <button onClick={reloadPage}>Make API Call Again</button>
-      </div>
-  );
+const handleRefresh = () => {
+  setGifData({data:null})
+}
+console.log(gifData)
+return (
+  <div className="App">
+    <h1>Giphy</h1>
+    <Form handleSubmit={handleSubmit}/>
+    <button onClick = {() => handleRefresh()}>Make API Call Again</button>
+    {gifData.length ? <GifInfo  gif={gifData}/> : null}
+  </div>
+);
 }
 
 export default App;
